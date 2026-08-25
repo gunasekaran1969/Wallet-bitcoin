@@ -1,7 +1,11 @@
+
 const bitcoin = require("bitcoinjs-lib");
-const ecc = require("tiny-secp256k1");
-const BIP32Factory = require("bip32").BIP32Factory;
+const ecc = require("@bitcoinerlab/secp256k1");
+const { BIP32Factory } = require("bip32");
 const bip39 = require("bip39");
+const { Buffer } = require("buffer");
+
+globalThis.Buffer = Buffer;
 
 bitcoin.initEccLib(ecc);
 
