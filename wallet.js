@@ -1,23 +1,21 @@
 // BitNova Wallet
-// Bitcoin TESTNET ONLY
 
 function openTestnetWallet() {
 
     const walletBox = document.getElementById("testnetWallet");
     const addressBox = document.getElementById("testnetAddress");
+    const statusBox = document.getElementById("walletStatus");
 
+    walletBox.classList.remove("hidden");
     walletBox.style.display = "block";
-    addressBox.innerText = "Creating secure testnet wallet...";
 
-    setTimeout(function () {
+    statusBox.innerText = "Checking wallet engine...";
+
+    if (typeof window.createBitNovaTestnetWallet === "function") {
+
+        statusBox.innerText = "Wallet engine loaded.";
 
         try {
-
-            if (typeof window.createBitNovaTestnetWallet !== "function") {
-                throw new Error(
-                    "Wallet engine is not loaded. Please refresh the page after GitHub Pages finishes publishing."
-                );
-            }
 
             const wallet =
                 window.createBitNovaTestnetWallet();
@@ -26,28 +24,38 @@ function openTestnetWallet() {
                 "<strong>Bitcoin Testnet Address:</strong><br><br>" +
                 "<span style='word-break:break-all;'>" +
                 wallet.address +
-                "</span>" +
-                "<br><br>" +
-                "<small>TESTNET ONLY — Do not send real Bitcoin.</small>";
+                "</span>";
+
+            statusBox.innerText =
+                "Testnet wallet created successfully.";
 
         } catch (error) {
 
             console.error(error);
 
+            statusBox.innerText =
+                "Wallet engine loaded, but wallet creation failed.";
+
             addressBox.innerText =
-                "Wallet creation failed: " +
                 error.message;
         }
 
-    }, 300);
+    } else {
+
+        statusBox.innerText =
+            "Wallet engine NOT loaded.";
+
+        addressBox.innerHTML =
+            "The wallet bundle has not loaded correctly.<br><br>" +
+            "<strong>We will fix the bundle connection next.</strong>";
+    }
 }
 
 
 function sendBitcoin() {
 
     alert(
-        "Send Bitcoin\n\n" +
-        "Testnet sending will be added after wallet verification."
+        "Send Bitcoin will be added after the testnet wallet is verified."
     );
 
 }
@@ -56,8 +64,37 @@ function sendBitcoin() {
 function receiveBitcoin() {
 
     alert(
-        "Receive Bitcoin\n\n" +
-        "Your Bitcoin Testnet address will appear here."
+        "Receive Bitcoin will be added after the testnet wallet is verified."
     );
+
+}
+
+
+function copyAddress() {
+
+    const element =
+        document.getElementById("testnetAddress");
+
+    const address =
+        element.innerText.trim();
+
+    if (!address || address.includes("not loaded")) {
+
+        alert("Create the testnet wallet first.");
+        return;
+
+    }
+
+    navigator.clipboard.writeText(address)
+        .then(function () {
+
+            alert("Testnet address copied.");
+
+        })
+        .catch(function () {
+
+            alert("Please copy the address manually.");
+
+        });
 
 }
