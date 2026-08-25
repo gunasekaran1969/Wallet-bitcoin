@@ -1,24 +1,32 @@
 // BitNova Wallet
-// Testnet development only
+// Bitcoin Testnet development
 
-function createTestnetWallet() {
-    alert(
-        "BitNova Testnet Wallet\n\n" +
-        "Wallet generation will be connected in the next development stage.\n\n" +
-        "IMPORTANT: This is TESTNET only."
-    );
+function openTestnetWallet() {
+
+    const walletBox =
+        document.getElementById("testnetWallet");
+
+    walletBox.style.display = "block";
+
+    document.getElementById("testnetAddress").innerText =
+        "Secure testnet address generation will be connected next.";
+
 }
 
 function sendBitcoin() {
+
     alert(
         "Send Bitcoin\n\n" +
-        "Bitcoin testnet sending will be added after wallet generation."
+        "Testnet sending will be added after wallet creation."
     );
+
 }
 
 function receiveBitcoin() {
+
     alert(
         "Receive Bitcoin\n\n" +
-        "A real Bitcoin testnet address and QR code will be added next."
+        "Testnet receiving will be added after wallet creation."
     );
+
 }
