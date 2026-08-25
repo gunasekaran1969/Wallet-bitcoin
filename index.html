@@ -2,187 +2,219 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
 
 <title>BitNova Wallet</title>
 
+<meta name="description"
+      content="BitNova Wallet - Bitcoin Testnet Wallet Prototype">
+
 <style>
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f6f8;
-    color:#222;
-    padding-bottom:80px;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #17202a;
 }
 
-.header{
-    background:#111827;
-    color:white;
-    padding:20px;
-    text-align:center;
+.header {
+    background: #111827;
+    color: white;
+    padding: 18px 20px;
+    text-align: center;
 }
 
-.header h1{
-    margin:0;
-    font-size:25px;
+.logo {
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.demo{
-    display:inline-block;
-    margin-top:8px;
-    background:#f59e0b;
-    color:#111;
-    padding:6px 14px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
+.logo span {
+    color: #f7931a;
 }
 
-.container{
-    max-width:500px;
-    margin:auto;
-    padding:20px;
+.subtitle {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #cbd5e1;
 }
 
-.balance{
-    background:#1f2937;
-    color:white;
-    border-radius:20px;
-    padding:28px 20px;
-    text-align:center;
-    margin-bottom:20px;
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 18px;
 }
 
-.balance small{
-    color:#d1d5db;
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.btc{
-    font-size:32px;
-    font-weight:bold;
-    margin:12px 0;
+.balance-title {
+    font-size: 14px;
+    color: #64748b;
 }
 
-.inr{
-    color:#9ca3af;
+.balance {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 8px;
+    color: #111827;
 }
 
-.buttons{
-    display:flex;
-    gap:12px;
-    margin-bottom:15px;
+.demo {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #fff3cd;
+    color: #856404;
+    font-size: 12px;
+    font-weight: bold;
 }
 
-.buttons button{
-    flex:1;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
+.network {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #64748b;
 }
 
-.send{
-    background:#f59e0b;
-    color:#111;
+.network strong {
+    color: #16a34a;
 }
 
-.receive{
-    background:#10b981;
-    color:white;
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
 }
 
-.create{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    background:#2563eb;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-bottom:20px;
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.card{
-    background:white;
-    padding:20px;
-    border-radius:16px;
-    margin-bottom:15px;
-    box-shadow:0 3px 12px rgba(0,0,0,0.08);
+.create {
+    width: 100%;
+    background: #f7931a;
+    color: white;
+    font-size: 17px;
 }
 
-.card h3{
-    margin-top:0;
+.create:hover {
+    opacity: 0.9;
 }
 
-.address{
-    background:#f3f4f6;
-    padding:12px;
-    border-radius:8px;
-    word-break:break-all;
-    font-size:14px;
+.action {
+    flex: 1;
+    background: #111827;
+    color: white;
 }
 
-.copy{
-    margin-top:10px;
-    padding:10px 16px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
+.receive {
+    background: #16a34a;
 }
 
-.transaction{
-    display:flex;
-    justify-content:space-between;
-    padding:12px 0;
-    border-bottom:1px solid #eee;
+.testnet-title {
+    color: #f7931a;
+    font-size: 21px;
+    margin-top: 0;
 }
 
-.transaction:last-child{
-    border-bottom:none;
+.status {
+    padding: 10px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-top: 12px;
 }
 
-.received{
-    color:#10b981;
-    font-weight:bold;
+.address-box {
+    margin-top: 16px;
+    padding: 15px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    word-break: break-all;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
-.sent{
-    color:#ef4444;
-    font-weight:bold;
+.copy-button {
+    width: 100%;
+    margin-top: 12px;
+    background: #2563eb;
+    color: white;
 }
 
-.warning{
-    background:#fff7ed;
-    border-left:4px solid #f59e0b;
-    padding:12px;
-    border-radius:8px;
-    font-size:14px;
+.warning {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    color: #9a3412;
+    font-size: 12px;
+    line-height: 1.5;
 }
 
-.nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:white;
-    display:flex;
-    justify-content:space-around;
-    padding:14px 5px;
-    box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+.history-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.nav div{
-    text-align:center;
-    font-size:13px;
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 5px;
+    z-index: 10;
+}
+
+.nav-item {
+    text-align: center;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.nav-item strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.footer-space {
+    height: 75px;
+}
+
+.hidden {
+    display: none;
 }
 
 </style>
@@ -190,248 +222,325 @@ body{
 
 <body>
 
-<div class="header">
+<!-- HEADER -->
 
-<h1>₿ BitNova Wallet</h1>
+<header class="header">
 
-<div class="demo">
-DEMO / TESTNET
-</div>
+    <div class="logo">
+        ₿ <span>BitNova</span> Wallet
+    </div>
 
-</div>
+    <div class="subtitle">
+        Secure Bitcoin Testnet Wallet Prototype
+    </div>
 
+</header>
 
-<div class="container">
 
-<!-- DEMO BALANCE -->
+<main class="container">
 
-<div class="balance">
+    <!-- BALANCE -->
 
-<small>Demo Balance</small>
+    <div class="card">
 
-<div class="btc">
-₿ 3.00000000
-</div>
+        <div class="balance-title">
+            Wallet Balance
+        </div>
 
-<div class="inr">
-Demo balance — not real Bitcoin
-</div>
+        <div class="balance">
+            ₿ 3.00000000
+        </div>
 
-</div>
+        <div class="demo">
+            DEMO BALANCE
+        </div>
 
+        <div class="network">
+            Network:
+            <strong>Bitcoin Testnet</strong>
+        </div>
 
-<!-- SEND / RECEIVE -->
+    </div>
 
-<div class="buttons">
 
-<button class="send" onclick="sendBitcoin()">
-SEND
-</button>
+    <!-- WALLET CREATION -->
 
-<button class="receive" onclick="receiveBitcoin()">
-RECEIVE
-</button>
+    <div class="card">
 
-</div>
+        <h2>
+            Create Your Wallet
+        </h2>
 
+        <p style="color:#64748b;font-size:14px;">
+            Create a Bitcoin Testnet wallet locally
+            in your browser.
+        </p>
 
-<!-- CREATE WALLET -->
+        <button
+            class="create"
+            onclick="openTestnetWallet()">
 
-<button class="create" onclick="openTestnetWallet()">
+            ₿ Create Testnet Wallet
 
-₿ Create Testnet Wallet
+        </button>
 
-</button>
+    </div>
 
-<div id="testnetWallet" class="card" style="display:none;">
 
-<h3>₿ Bitcoin Testnet Wallet</h3>
+    <!-- TESTNET WALLET -->
 
-<p><strong>Network:</strong> Bitcoin Testnet</p>
+    <div
+        id="testnetWallet"
+        class="card hidden">
 
-<p><strong>Status:</strong> Ready for secure wallet creation</p>
+        <h2 class="testnet-title">
+            ₿ Bitcoin Testnet Wallet
+        </h2>
 
-<div class="address" id="testnetAddress">
-No address generated yet.
-</div>
+        <div class="status">
 
-<p style="font-size:13px;color:#666;">
-A real testnet address will be generated in the next stage.
-</p>
+            <strong>Network:</strong>
+            Bitcoin Testnet
 
-</div>
-₿ Create Testnet Wallet
+            <br><br>
 
-</button>
+            <strong>Status:</strong>
+            <span id="walletStatus">
+                Creating wallet...
+            </span>
 
+        </div>
 
-<!-- WALLET ADDRESS -->
 
-<div class="card">
+        <div class="address-box">
 
-<h3>Wallet Address</h3>
+            <strong>
+                Testnet Address
+            </strong>
 
-<div class="address" id="walletAddress">
+            <br><br>
 
-No testnet wallet created yet.
+            <span id="testnetAddress">
+                No address generated yet.
+            </span>
 
-</div>
+        </div>
 
-<button class="copy" onclick="copyAddress()">
 
-Copy Address
+        <button
+            id="copyButton"
+            class="copy-button"
+            onclick="copyAddress()">
 
-</button>
+            📋 Copy Address
 
-</div>
+        </button>
 
 
-<!-- TRANSACTIONS -->
+        <div class="warning">
 
-<div class="card">
+            ⚠️ <strong>TESTNET ONLY</strong><br>
 
-<h3>Recent Transactions</h3>
+            This is a development wallet.
+            Do not send real Bitcoin to this address.
 
-<div class="transaction">
+            <br><br>
 
-<span>
-Received
-</span>
+            The recovery phrase/private key is not
+            displayed or stored by this page.
 
-<span class="received">
-+1.000 BTC
-</span>
+        </div>
 
-</div>
+    </div>
 
 
-<div class="transaction">
+    <!-- SEND / RECEIVE -->
 
-<span>
-Received
-</span>
+    <div class="card">
 
-<span class="received">
-+2.000 BTC
-</span>
+        <h3>
+            Wallet Actions
+        </h3>
 
-</div>
+        <div class="buttons">
 
+            <button
+                class="action"
+                onclick="sendBitcoin()">
 
-<div class="transaction">
+                ↑ Send
 
-<span>
-Demo Transaction
-</span>
+            </button>
 
-<span class="sent">
--0.100 BTC
-</span>
+            <button
+                class="action receive"
+                onclick="receiveBitcoin()">
 
-</div>
+                ↓ Receive
 
-</div>
+            </button>
 
+        </div>
 
-<!-- SECURITY -->
+    </div>
 
-<div class="card">
 
-<h3>🔐 Security</h3>
+    <!-- TRANSACTION HISTORY -->
 
-<div class="warning">
+    <div class="card">
 
-<strong>Development version</strong>
+        <h3>
+            Transaction History
+        </h3>
 
-<br><br>
+        <div class="history-item">
 
-This BitNova Wallet is currently a
-demo/testnet project.
+            <strong>
+                No transactions
+            </strong>
 
-<br><br>
+            <br>
 
-Never enter a real Bitcoin recovery
-phrase or private key into this demo.
+            <small style="color:#64748b;">
+                Your testnet transactions will appear here.
+            </small>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 
-<!-- NETWORK -->
+    <!-- SETTINGS -->
 
-<div class="card">
+    <div class="card">
 
-<h3>Network</h3>
+        <h3>
+            ⚙ Settings
+        </h3>
 
-<p>
-🟡 Bitcoin Testnet
-</p>
+        <p style="font-size:14px;color:#64748b;">
+            Network: Bitcoin Testnet
+        </p>
 
-<p>
-Status: Development
-</p>
+        <p style="font-size:14px;color:#64748b;">
+            BitNova Wallet Prototype v0.1
+        </p>
 
-</div>
+    </div>
 
-</div>
+</main>
+
+
+<div class="footer-space"></div>
 
 
 <!-- BOTTOM NAVIGATION -->
 
-<div class="nav">
+<nav class="bottom-nav">
 
-<div>
-🏠<br>
-Home
-</div>
+    <div class="nav-item">
 
-<div>
-₿<br>
-Wallet
-</div>
+        <strong>🏠</strong>
+        Home
 
-<div>
-📜<br>
-History
-</div>
+    </div>
 
-<div>
-⚙️<br>
-Settings
-</div>
+    <div
+        class="nav-item"
+        onclick="receiveBitcoin()">
 
-</div>
+        <strong>↓</strong>
+        Receive
+
+    </div>
+
+    <div
+        class="nav-item"
+        onclick="sendBitcoin()">
+
+        <strong>↑</strong>
+        Send
+
+    </div>
+
+    <div class="nav-item">
+
+        <strong>📜</strong>
+        History
+
+    </div>
+
+    <div class="nav-item">
+
+        <strong>⚙</strong>
+        Settings
+
+    </div>
+
+</nav>
 
 
-<!-- CONNECT JAVASCRIPT -->
-script src="wallet-lib.js"></script>
-<script src="wallet.bundle.js"></script>
-<script src="wallet.js"></script>
+<!--
+==================================================
+BITNOVA JAVASCRIPT
+==================================================
+IMPORTANT:
+The order of these files is important.
+==================================================
+-->
+
+<script src="./wallet-lib.js"></script>
+
+<script src="./wallet.bundle.js"></script>
+
+<script src="./wallet.js"></script>
 
 
+<!-- COPY ADDRESS SUPPORT -->
 
 <script>
 
-function copyAddress(){
+function copyAddress() {
+
+    const addressElement =
+        document.getElementById("testnetAddress");
 
     const address =
-    document.getElementById("walletAddress").innerText;
+        addressElement.innerText.trim();
 
-    if(address === "No testnet wallet created yet."){
+    if (
+        !address ||
+        address === "No address generated yet."
+    ) {
 
-        alert("Please create a testnet wallet first.");
+        alert(
+            "Please create a testnet wallet first."
+        );
 
         return;
     }
 
-    navigator.clipboard.writeText(address);
+    navigator.clipboard.writeText(address)
+        .then(function () {
 
-    alert("Wallet address copied.");
+            alert(
+                "Bitcoin Testnet address copied."
+            );
+
+        })
+        .catch(function () {
+
+            alert(
+                "Unable to copy automatically. " +
+                "Please copy the address manually."
+            );
+
+        });
 
 }
 
 </script>
+
 
 </body>
 </html>
