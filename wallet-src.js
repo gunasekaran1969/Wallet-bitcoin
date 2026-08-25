@@ -1,33 +1,43 @@
-const bitcoin = require("bitcoinjs-lib");
-const bip39 = require("bip39");
-const ecc = require("tiny-secp256k1");
-const { BIP32Factory } = require("bip32");
+// BitNova Wallet
+// TESTNET ONLY
 
-const bip32 = BIP32Factory(ecc);
+const NETWORK = bitcoinjslib.networks.testnet;
 
 function createTestnetWallet() {
 
-    const network = bitcoin.networks.testnet;
+    try {
 
-    const mnemonic = bip39.generateMnemonic(128);
+        const keyPair = bitcoinjslib.ECPair.makeRandom({
+            network: NETWORK
+        });
 
-    const seed = bip39.mnemonicToSeedSync(mnemonic);
+        const payment = bitcoinjslib.payments.p2wpkh({
+            pubkey: keyPair.publicKey,
+            network: NETWORK
+        });
 
-    const root = bip32.fromSeed(seed, network);
+        if (!payment.address) {
+            throw new Error("Could not create wallet address.");
+        }
 
-    const path = "m/84'/1'/0'/0/0";
+        document.getElementById("walletAddress").innerText =
+            payment.address;
 
-    const child = root.derivePath(path);
+        alert(
+            "Testnet wallet created successfully!\n\n" +
+            "Address:\n" +
+            payment.address +
+            "\n\nIMPORTANT:\n" +
+            "This is a TESTNET wallet only."
+        );
 
-    const payment = bitcoin.payments.p2wpkh({
-        pubkey: Buffer.from(child.publicKey),
-        network: network
-    });
+    } catch (error) {
 
-    return {
-        address: payment.address,
-        mnemonic: mnemonic
-    };
+        console.error(error);
+
+        alert(
+            "Wallet creation failed.\n\n" +
+            error.message
+        );
+    }
 }
-
-window.createTestnetWallet = createTestnetWallet;
