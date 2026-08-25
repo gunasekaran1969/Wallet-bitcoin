@@ -23,5 +23,7 @@ jobs:
       - name: Build wallet
         run: npm run build
 
-      - name: Verify build
-        run: test -s wallet.bundle.js
+      - name: Verify wallet bundle
+        run: |
+          test -s wallet.bundle.js
+          echo "BitNova wallet bundle created successfully"
