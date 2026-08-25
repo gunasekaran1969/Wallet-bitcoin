@@ -1,5 +1,5 @@
 // BitNova Wallet
-// Bitcoin TESTNET only
+// Bitcoin TESTNET ONLY
 
 function openTestnetWallet() {
 
@@ -7,46 +7,57 @@ function openTestnetWallet() {
     const addressBox = document.getElementById("testnetAddress");
 
     walletBox.style.display = "block";
-
     addressBox.innerText = "Creating secure testnet wallet...";
 
-    try {
+    setTimeout(function () {
 
-        if (typeof window.createBitNovaTestnetWallet !== "function") {
-            throw new Error("Wallet engine is not loaded.");
+        try {
+
+            if (typeof window.createBitNovaTestnetWallet !== "function") {
+                throw new Error(
+                    "Wallet engine is not loaded. Please refresh the page after GitHub Pages finishes publishing."
+                );
+            }
+
+            const wallet =
+                window.createBitNovaTestnetWallet();
+
+            addressBox.innerHTML =
+                "<strong>Bitcoin Testnet Address:</strong><br><br>" +
+                "<span style='word-break:break-all;'>" +
+                wallet.address +
+                "</span>" +
+                "<br><br>" +
+                "<small>TESTNET ONLY — Do not send real Bitcoin.</small>";
+
+        } catch (error) {
+
+            console.error(error);
+
+            addressBox.innerText =
+                "Wallet creation failed: " +
+                error.message;
         }
 
-        const wallet = window.createBitNovaTestnetWallet();
-
-        addressBox.innerHTML =
-            "<strong>Testnet Address:</strong><br><br>" +
-            "<span style='word-break:break-all;'>" +
-            wallet.address +
-            "</span>";
-
-        console.log("BitNova Testnet Address:", wallet.address);
-
-    } catch (error) {
-
-        console.error(error);
-
-        addressBox.innerText =
-            "Wallet creation failed: " + error.message;
-    }
+    }, 300);
 }
+
 
 function sendBitcoin() {
 
     alert(
         "Send Bitcoin\n\n" +
-        "Testnet sending will be added after the wallet is verified."
+        "Testnet sending will be added after wallet verification."
     );
+
 }
+
 
 function receiveBitcoin() {
 
     alert(
         "Receive Bitcoin\n\n" +
-        "Your testnet address will appear here."
+        "Your Bitcoin Testnet address will appear here."
     );
+
 }
