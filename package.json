@@ -4,7 +4,7 @@
   "private": true,
   "description": "BitNova Wallet - Bitcoin testnet wallet prototype",
   "scripts": {
-    "build": "browserify wallet-src.js -o wallet.bundle.js"
+    "build": "esbuild wallet-src.js --bundle --outfile=wallet.bundle.js --format=iife --platform=browser"
   },
   "dependencies": {
     "bitcoinjs-lib": "6.1.7",
@@ -13,6 +13,6 @@
     "tiny-secp256k1": "2.2.4"
   },
   "devDependencies": {
-    "browserify": "17.0.1"
+    "esbuild": "0.25.9"
   }
 }
