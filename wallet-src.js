@@ -1,4 +1,3 @@
-
 const bitcoin = require("bitcoinjs-lib");
 const ecc = require("@bitcoinerlab/secp256k1");
 const { BIP32Factory } = require("bip32");
@@ -11,7 +10,7 @@ bitcoin.initEccLib(ecc);
 
 const bip32 = BIP32Factory(ecc);
 
-window.createBitNovaTestnetWallet = function () {
+function createBitNovaTestnetWallet() {
 
     const network = bitcoin.networks.testnet;
 
@@ -38,4 +37,10 @@ window.createBitNovaTestnetWallet = function () {
         address: payment.address,
         mnemonic: mnemonic
     };
-};
+}
+
+/*
+ * Explicitly expose the function to the browser.
+ */
+globalThis.createBitNovaTestnetWallet =
+    createBitNovaTestnetWallet;
