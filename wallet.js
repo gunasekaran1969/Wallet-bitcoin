@@ -12,8 +12,18 @@ function openTestnetWallet() {
     statusBox.innerText = "Checking wallet engine...";
 
     // The bundle may expose the function through the browser global.
-    const walletFunction =
-        window.createBitNovaTestnetWallet;
+    ;const walletFunction =
+    window.createBitNovaTestnetWallet;
+
+console.log(
+    "BitNovaReady:",
+    window.BitNovaReady
+);
+
+console.log(
+    "Wallet function:",
+    typeof window.createBitNovaTestnetWallet
+);
 
     if (typeof walletFunction !== "function") {
 
