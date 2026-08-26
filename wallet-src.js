@@ -39,8 +39,13 @@ function createBitNovaTestnetWallet() {
     };
 }
 
-/*
- * Explicitly expose the function to the browser.
- */
-globalThis.createBitNovaTestnetWallet =
-    createBitNovaTestnetWallet;
+// Explicit browser export
+if (typeof window !== "undefined") {
+    window.createBitNovaTestnetWallet =
+        createBitNovaTestnetWallet;
+}
+
+if (typeof globalThis !== "undefined") {
+    globalThis.createBitNovaTestnetWallet =
+        createBitNovaTestnetWallet;
+}
