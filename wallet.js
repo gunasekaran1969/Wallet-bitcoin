@@ -1,114 +1,135 @@
+// ======================================
 // BitNova Wallet
+// Bitcoin Testnet Prototype
+// ======================================
 
-function openTestnetWallet() {
+function createWallet() {
 
-    const walletBox = document.getElementById("testnetWallet");
-    const addressBox = document.getElementById("testnetAddress");
-    const statusBox = document.getElementById("walletStatus");
+    const walletCard =
+        document.getElementById("walletCard");
 
-    walletBox.classList.remove("hidden");
-    walletBox.style.display = "block";
+    const status =
+        document.getElementById("status");
 
-    statusBox.innerText = "Checking wallet engine...";
+    const address =
+        document.getElementById("address");
 
-    // The bundle may expose the function through the browser global.
-    ;const walletFunction =
-    window.createBitNovaTestnetWallet;
+    walletCard.classList.remove("hidden");
 
-console.log(
-    "BitNovaReady:",
-    window.BitNovaReady
-);
+    status.innerText =
+        "Checking wallet engine...";
 
-console.log(
-    "Wallet function:",
-    typeof window.createBitNovaTestnetWallet
-);
+    address.innerText =
+        "Please wait...";
 
-    if (typeof walletFunction !== "function") {
 
-        statusBox.innerText = "Wallet engine not available.";
+    // Check whether the compiled wallet
+    // has exposed the function.
 
-        addressBox.innerHTML =
-            "The Bitcoin library loaded, but the wallet function " +
-            "was not exposed to the page.";
+    if (
+        typeof window.createBitNovaTestnetWallet !==
+        "function"
+    ) {
+
+        status.innerText =
+            "Wallet engine is not available.";
+
+        address.innerText =
+            "The wallet engine did not expose the required function.";
+
+        console.error(
+            "createBitNovaTestnetWallet is missing."
+        );
 
         return;
     }
 
+
     try {
 
-        statusBox.innerText =
-            "Generating Bitcoin Testnet address...";
+        status.innerText =
+            "Generating Bitcoin Testnet wallet...";
 
-        const wallet = walletFunction();
 
-        if (!wallet || !wallet.address) {
+        const wallet =
+            window.createBitNovaTestnetWallet();
+
+
+        if (
+            !wallet ||
+            !wallet.address
+        ) {
+
             throw new Error(
-                "No testnet address was returned."
+                "The wallet engine did not return an address."
             );
         }
 
-        addressBox.innerHTML =
-            "<strong>Bitcoin Testnet Address:</strong><br><br>" +
-            "<span style='word-break:break-all;'>" +
-            wallet.address +
-            "</span>";
 
-        statusBox.innerText =
-            "Testnet wallet created successfully.";
+        address.innerText =
+            wallet.address;
+
+
+        status.innerText =
+            "Bitcoin Testnet wallet created successfully.";
+
+
+        console.log(
+            "BitNova Testnet Address:",
+            wallet.address
+        );
+
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "BitNova wallet error:",
+            error
+        );
 
-        statusBox.innerText =
+
+        status.innerText =
             "Wallet creation failed.";
 
-        addressBox.innerText =
+
+        address.innerText =
             error.message;
     }
 }
 
 
-function sendBitcoin() {
-
-    alert(
-        "Send Bitcoin will be added after testnet wallet verification."
-    );
-
-}
-
-
-function receiveBitcoin() {
-
-    alert(
-        "Receive Bitcoin will be added after testnet wallet verification."
-    );
-
-}
-
+// ======================================
+// Copy address
+// ======================================
 
 function copyAddress() {
 
-    const element =
-        document.getElementById("testnetAddress");
-
     const address =
-        element.innerText.trim();
+        document.getElementById("address")
+            .innerText
+            .trim();
 
-    if (!address ||
-        address.includes("No address") ||
-        address.includes("not available")) {
 
-        alert("Create a testnet wallet first.");
+    if (
+        !address ||
+        address === "No address generated yet." ||
+        address === "Please wait..."
+    ) {
+
+        alert(
+            "Create the wallet first."
+        );
+
         return;
     }
+
 
     navigator.clipboard.writeText(address)
         .then(function () {
 
-            alert("Testnet address copied.");
+            alert(
+                "Testnet address copied."
+            );
 
         })
         .catch(function () {
@@ -118,4 +139,28 @@ function copyAddress() {
             );
 
         });
+}
+
+
+// ======================================
+// Send
+// ======================================
+
+function sendBitcoin() {
+
+    alert(
+        "Send Bitcoin will be added after the Testnet wallet is verified."
+    );
+}
+
+
+// ======================================
+// Receive
+// ======================================
+
+function receiveBitcoin() {
+
+    alert(
+        "Receive Bitcoin will be added after the Testnet wallet is verified."
+    );
 }
