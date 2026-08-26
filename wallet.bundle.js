@@ -42715,19 +42715,14 @@
       network
     });
     if (!payment.address) {
-      throw new Error("Unable to create testnet address.");
+      throw new Error("Unable to create Testnet address.");
     }
     return {
       address: payment.address,
       mnemonic
     };
   }
-  if (typeof window !== "undefined") {
-    window.createBitNovaTestnetWallet = createBitNovaTestnetWallet;
-  }
-  if (typeof globalThis !== "undefined") {
-    globalThis.createBitNovaTestnetWallet = createBitNovaTestnetWallet;
-  }
+  window.createBitNovaTestnetWallet = createBitNovaTestnetWallet;
 })();
 /*! Bundled license information:
 
