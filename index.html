@@ -490,7 +490,11 @@ The order of these files is important.
 -->
 
 
-<script src="./wallet.bundle.js"></script>
+<script
+    src="./wallet.bundle.js?v=2"
+    onload="console.log('BitNova wallet bundle loaded')"
+    onerror="console.error('BitNova wallet bundle FAILED to load')">
+</script>
 
 <script src="./wallet.js"></script>
 
