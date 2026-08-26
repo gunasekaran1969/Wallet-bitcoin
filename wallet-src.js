@@ -30,7 +30,7 @@ function createBitNovaTestnetWallet() {
     });
 
     if (!payment.address) {
-        throw new Error("Unable to create testnet address.");
+        throw new Error("Unable to create Testnet address.");
     }
 
     return {
@@ -39,13 +39,11 @@ function createBitNovaTestnetWallet() {
     };
 }
 
-// Explicit browser export
-if (typeof window !== "undefined") {
-    window.createBitNovaTestnetWallet =
-        createBitNovaTestnetWallet;
-}
 
-if (typeof globalThis !== "undefined") {
-    globalThis.createBitNovaTestnetWallet =
-        createBitNovaTestnetWallet;
-}
+/*
+ * Explicit browser export.
+ * This MUST appear in the generated bundle.
+ */
+
+window.createBitNovaTestnetWallet =
+    createBitNovaTestnetWallet;
