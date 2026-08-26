@@ -42702,7 +42702,7 @@
   globalThis.Buffer = Buffer2;
   bitcoin.initEccLib(ecc);
   var bip32 = BIP32Factory(ecc);
-  window.createBitNovaTestnetWallet = function() {
+  function createBitNovaTestnetWallet() {
     const network = bitcoin.networks.testnet;
     const mnemonic = bip39.generateMnemonic(128);
     const seed = bip39.mnemonicToSeedSync(mnemonic);
@@ -42721,7 +42721,13 @@
       address: payment.address,
       mnemonic
     };
-  };
+  }
+  if (typeof window !== "undefined") {
+    window.createBitNovaTestnetWallet = createBitNovaTestnetWallet;
+  }
+  if (typeof globalThis !== "undefined") {
+    globalThis.createBitNovaTestnetWallet = createBitNovaTestnetWallet;
+  }
 })();
 /*! Bundled license information:
 
